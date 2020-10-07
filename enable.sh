@@ -47,11 +47,6 @@ fi
 
 # Block connection without VPN
 iptables -F
-interface=`ip -o -4 route show to default | grep dhcp | awk '{print $5}'`
-if [[ $? != 0 ]]; then
-    echo "Must be connected to a network to configure the VPN"
-    exit 1
-fi
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A OUTPUT -o tun0 -d 0/0 -j ACCEPT
