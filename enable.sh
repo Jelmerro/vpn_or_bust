@@ -2,7 +2,7 @@
 
 # Require root access
 if [[ ("$UID" != 0) ]]; then
-    echo "Root access is required for this installation"
+    echo "Root access is required for modifying iptables"
     exit 1
 fi
 cd $(realpath $(dirname $0))

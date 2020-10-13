@@ -27,7 +27,6 @@ check if the iptables location at the end of the program is correct for your lin
 # Disable
 
 Simply run `./disable.sh` to undo any changes to iptables (tables are flushed and policies are reset).
-Finally consider deleting `/etc/sysconfig/iptables` to stop auto-loading on reboot.
 
 # License
 
