@@ -45,6 +45,9 @@ if [[ $? != 0 ]]; then
     runuser -u `logname` -- nmcli connection modify $vpnname +vpn.secrets password=$password
 fi
 
+# Connect to the VPN
+runuser -u `logname` -- nmcli connection up $vpnname
+
 # Block connection without VPN
 iptables -F
 iptables -A INPUT -i lo -j ACCEPT
