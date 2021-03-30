@@ -24,13 +24,16 @@ fi
 if [ "$#" == 1 ];then
     vpnfile=$1
 else
-    ls *.ovpn &> /dev/null
-    if [[ $? != 0 ]];then
+    count=`ls -n *.ovpn 2>/dev/null | wc -l`
+    if [[ $count == 0 ]];then
         echo "Please store any .ovpn file next to this script to continue"
         exit 1
+    elif [[ $count == 1 ]];then
+        vpnfile=`ls -1 *.ovpn`
+    else
+        checkForTool fzf
+        vpnfile=`ls -1 *.ovpn | fzf`
     fi
-    checkForTool fzf
-    vpnfile=`ls -1 *.ovpn | fzf`
 fi
 vpnname=`basename ${vpnfile%.*}`
 
